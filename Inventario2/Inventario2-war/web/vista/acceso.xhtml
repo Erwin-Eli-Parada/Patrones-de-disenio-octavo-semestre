@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./../plantilla/norte_centro_sur.xhtml">
+
+            <ui:define name="centro">
+                <f:view>
+                <h:form>
+                    ACCEDER
+                    <p:panelGrid columns="2">
+                    
+                    <p:outputLabel for="usuario" value="usuario"/>
+                    <h:inputText id="usuario" value="${control_acceso.cliente.usuario}" required="true" requiredMessage="Se necesita un usuario" title="Usuario" />
+                    
+                    <p:outputLabel for="contrasenia" value="contraseña"/>
+                    <h:inputSecret id="contrasenia" value="${control_acceso.cliente.password}" required="true" requiredMessage="Se necesita una contraseña" title="Password" />
+                    </p:panelGrid>
+                    <br/>
+                    <h:commandLink action="${control_acceso.PaginaDestino()}" actionListener="${control_acceso.acceso()}" value="Acceder"> </h:commandLink>
+                    
+                </h:form>
+            </f:view>
+            </ui:define>
+
+            
+
+        </ui:composition>
+
+    </body>
+</html>

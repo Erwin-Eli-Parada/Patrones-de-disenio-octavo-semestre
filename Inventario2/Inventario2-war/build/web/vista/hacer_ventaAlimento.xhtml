@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="./../plantilla/norte_centro_sur.xhtml">
+            <ui:define name="centro">
+                <f:view>
+                    <h:form>
+                        <h1><h:outputText value="Alimentos minorista"/></h1>
+                        <p:panelGrid columns="2" columnClasses="no-border,no-border">
+                            <p:outputLabel value="Articulo:" for="articulo" />
+                            <p:selectOneMenu id="articulo" value="#{control_alimento.alimento.idalim}" disabled="#{control_alimento.selectAbarrote}">
+                                <!-- TODO: update below reference to list of available items-->
+                                <f:selectItems value="#{control_alimento.alimentos}" var="vabarrote" itemLabel="#{vabarrote.nombre} #{vabarrote.cantidadtienda}" itemValue="#{vabarrote.idalim}"/>
+                            </p:selectOneMenu>
+                            <h:outputText value=""/>
+                            <h:commandButton value="Aceptar" actionListener="${control_alimento.establecerAbarrote()}"/>
+                            <p:outputLabel value="Cantidad en tienda"/>
+                            <h:outputText value="#{control_alimento.alimento.cantidadtienda}"/>
+                            <p:outputLabel value="Cantidad:" for="cantidad" />
+                            <p:inputText id="cantidad" value="#{control_alimento.regresarArticulo().cantidad}" title="Cantidad" disabled="#{control_abarrote.selectAbarrote}" validatorMessage="Solo 0 a 100">
+                                <f:validateDoubleRange minimum = "0.0" maximum = "#{control_alimento.alimento.cantidadtienda}" />
+                            </p:inputText>
+                            <h:commandLink value="Seguir agregando" actionListener="#{control_alimento.agrega_alista()}" disabled="#{control_alimento.selectAbarrote}"/> 
+                            <h:commandLink value="Comprar" actionListener="#{control_alimento.editaraba()}" disabled="#{control_alimento.selectAcpetar}"/> 
+                            <p:outputLabel value="Fecha:" for="fecha" rendered="#{control_alimento.selectEditar}"/>
+                            <p:inputText id="fecha" value="#{control_alimento.venta.fecha}" title="Fecha" rendered="#{control_alimento.selectEditar}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </p:inputText>
+                            <p:outputLabel value="Empleado:" for="empleado" rendered="#{control_alimento.selectEditar}"/>
+                            <p:inputText id="empleado" value="#{control_alimento.venta.empleado}" title="Empleado" rendered="#{control_alimento.selectEditar}"/>
+                            <p:outputLabel value="Efectivo:" for="efectivo" rendered="#{control_alimento.selectEditar}"/>
+                            <p:inputText id="efectivo" value="#{control_alimento.venta.efectivo}" title="Efectivo" rendered="#{control_alimento.selectEditar}"/>
+                        </p:panelGrid>
+                        <h:commandLink value="Agregar" actionListener="#{control_alimento.agrega_Venta()}" rendered="#{control_alimento.selectEditar}"/>
+                        <h:commandLink class="regresar" value="Regresar" action="indexTemplate"/>
+                    </h:form>
+                </f:view>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

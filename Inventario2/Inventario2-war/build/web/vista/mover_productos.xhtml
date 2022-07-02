@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="./../plantilla/norte_centro_sur.xhtml">
+            <ui:define name="centro">
+                <f:view>
+                    <h:form>
+                        <h1><h:outputText value="Mover Producto"/></h1>
+                        <h:panelGrid columns="2">
+                            
+                            <h:selectOneMenu id="articulo" value="#{control_abarrote.abarrote.idavr}">
+                                <!-- TODO: update below reference to list of available items-->
+                                <f:selectItems value="#{control_abarrote.abarrotes}" var="vabarrote" itemLabel="#{vabarrote.nombre}" itemValue="#{vabarrote.idavr}"/>
+                            </h:selectOneMenu>
+                            <h:commandButton value="Aceptar" actionListener="${control_abarrote.establecerAbarrote()}" />
+                            <h:outputLabel value="Cantidad en tienda" />
+                            <h:outputText value="#{control_abarrote.abarrote.cantidadtienda}" />
+                            <h:outputLabel value="Cantidad en Bodega" />
+                            <h:outputText value="#{control_abarrote.abarrote.cantidadbodega}" />
+                            <h:outputLabel value="Cantidad a mover" />
+                            <h:inputText value="#{control_abarrote.cantidad}" />
+                            <h:commandButton value="Mover" actionListener="${control_abarrote.moverCantidadAbarrote()}"/>
+                            <h:commandButton value="Eliminar" actionListener="${control_abarrote.eliminarAbarrote()}"/>
+                        </h:panelGrid>
+                        <h:commandLink class="regresar" value="Regresar" action="indexTemplate"/>
+                    </h:form>
+                </f:view>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+        
+    </h:head>
+    <h:body>
+        <ui:composition template="./../plantilla/norte_centro_sur.xhtml">
+            <ui:define name="centro">
+                <f:view>
+                    <h:form>
+                        <h1><h:outputText value="Abarrotes minorista"/></h1>
+                        <p:panelGrid columns="2" columnClasses="no-border,no-border">
+                            <p:outputLabel value="Articulo:" for="articulo" />
+                            <p:selectOneMenu id="articulo" value="#{control_abarrote.abarrote.idavr}" disabled="#{control_abarrote.selectAbarrote}">
+                                <!-- TODO: update below reference to list of available items-->
+                                <f:selectItems value="#{control_abarrote.abarrotes}" var="vabarrote" itemLabel="#{vabarrote.nombre} #{vabarrote.cantidadtienda}" itemValue="#{vabarrote.idavr}"/>
+                            </p:selectOneMenu>
+                            <h:outputText value=""/>
+                            <h:commandButton value="Aceptar" actionListener="${control_abarrote.establecerAbarrote()}"/>
+                            <p:outputLabel value="Cantidad en tienda"/>
+                            <h:outputText value="#{control_abarrote.abarrote.cantidadtienda}"/>
+                            <p:outputLabel value="Cantidad:" for="cantidad" />
+                            <p:inputText id="cantidad" value="#{control_abarrote.artvendido.cantidad}" title="Cantidad" disabled="#{control_abarrote.selectAbarrote}" validatorMessage="Solo 0 a 100">
+                                <f:validateDoubleRange minimum = "0.0" maximum = "#{control_abarrote.abarrote.cantidadtienda}" />
+                            </p:inputText>
+                            <h:commandLink value="Agregar al carrito" actionListener="#{control_abarrote.agrega_alista()}" disabled="#{control_abarrote.selectAbarrote}"/> 
+                            <h:commandLink value="Comprar" actionListener="#{control_abarrote.editaraba()}" disabled="#{control_abarrote.selectAcpetar}"/> 
+                            <p:outputLabel value="Fecha:" for="fecha" rendered="#{control_abarrote.selectEditar}"/>
+                            <p:inputText id="fecha" value="#{control_abarrote.venta.fecha}" title="Fecha" rendered="#{control_abarrote.selectEditar}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </p:inputText>
+                            <p:outputLabel value="Empleado:" for="empleado" rendered="#{control_abarrote.selectEditar}"/>
+                            <p:inputText id="empleado" value="#{control_abarrote.venta.empleado}" title="Empleado" rendered="#{control_abarrote.selectEditar}"/>
+                            <p:outputLabel value="Efectivo:" for="efectivo" rendered="#{control_abarrote.selectEditar}"/>
+                            <p:inputText id="efectivo" value="#{control_abarrote.venta.efectivo}" title="Efectivo" rendered="#{control_abarrote.selectEditar}"/>
+                            <h:commandLink value="Agregar" actionListener="#{control_abarrote.agrega_Venta()}" rendered="#{control_abarrote.selectEditar}"/>
+                        </p:panelGrid>
+                        <h:commandLink class="regresar" value="Regresar" action="indexTemplate"/>
+                    </h:form>
+                </f:view>
+            </ui:define>
+        </ui:composition>
+
+    </h:body>
+</html>
+

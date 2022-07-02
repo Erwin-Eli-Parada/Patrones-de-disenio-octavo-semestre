@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="./../plantilla/norte_centro_sur.xhtml">
+            <ui:define name="centro">
+                <f:view>
+                    <h:form>
+                        <p:panelGrid columns="2">
+                            <p:selectOneMenu id="tipo" value="#{control_usuario.cliente.idcliente}" disabled="#{control_usuario.selectAbarrote}">
+                                <!-- TODO: update below reference to list of available items-->
+                                <f:selectItems value="#{control_usuario.clientes}" var="vabarrote" itemLabel="#{vabarrote.usuario}" itemValue="#{vabarrote.idcliente}"/>
+                            </p:selectOneMenu>
+                            <h:commandButton value="Seleccionar" actionListener="#{control_usuario.editaraba()}" disabled="#{control_usuario.selectAbarrote}"/>
+                            <p:outputLabel value="Usuario:" for="usuario" rendered="#{control_usuario.selectEditar}"/>
+                            <p:inputText id="usuario" value="#{control_usuario.cliente.usuario}" title="Usuario" rendered="#{control_usuario.selectEditar}"/>
+                            <p:outputLabel value="Contrseña:" for="password" rendered="#{control_usuario.selectEditar}"/>
+                            <p:inputText id="password" value="#{control_usuario.cliente.password}" title="Contraseña" rendered="#{control_usuario.selectEditar}"/>
+                            <p:outputLabel value="Tipo de cliente:" for="tipoCliente" rendered="#{control_usuario.selectEditar}"/>
+                            <p:inputText id="tipoCliente" value="#{control_usuario.cliente.tipocliente}" title="Tipo cliente" rendered="#{control_usuario.selectEditar}"/>
+                            <h:commandLink value="Modificar" actionListener="#{control_usuario.modificarCliente()}" rendered="#{control_usuario.selectEditar}"/>
+                            <h:commandLink value="Eliminar" actionListener="#{control_usuario.eliminarCliente()}" rendered="#{control_usuario.selectEditar}"/>
+                            </p:panelGrid>
+                            <h:commandLink class="regresar" value="Regresar" action="indexTemplate"/>
+                    </h:form>
+                </f:view>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

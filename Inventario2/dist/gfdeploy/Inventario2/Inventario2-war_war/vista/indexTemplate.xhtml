@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./../plantilla/indice.xhtml">
+
+            <ui:define name="left">
+                left
+            </ui:define>
+
+            <ui:define name="right">
+                right
+            </ui:define>
+
+            <ui:define name="content">
+                <center>
+                <h:form>
+                    <p:outputLabel value="Menu"/>
+                    <p:panelGrid class="menu" columns="2">
+                        <h:outputText class="textoSimple" value="Tipo Abarrotes" rendered="${control_acceso.activo1}"/>
+                        <h:commandLink value="Agregar tipo" action="agrega_tipo" actionListener="#{control_abarrote.crear_()}" rendered="${control_acceso.activo1}"/>
+                        <h:outputText class="textoSimple" value="Abarrotes" rendered="${control_acceso.activo1}"/>
+                        <h:commandLink value="Agregar abarrote" action="agrega_abarrote" actionListener="#{control_abarrote.crear_()}" rendered="${control_acceso.activo1}" />
+                        <h:outputText class="textoSimple" value="Venta Minorista Abarrotes" rendered="${control_acceso.activo2}"/>
+                        <h:commandLink value="Hacer venta" action="hacer_venta" actionListener="#{control_abarrote.crear_()}"  rendered="${control_acceso.activo2}"/>
+                        <h:outputText class="textoSimple" value="Venta Mayorista Abarrotes" rendered="${control_acceso.activo3}"/>
+                        <h:commandLink value="Hacer venta" action="hacer_ventaM" actionListener="#{control_abarrote.crear_()}"  rendered="${control_acceso.activo3}"/>
+                        <h:outputText class="textoSimple" value="Venta Minorista Alimentos" rendered="${control_acceso.activo2}"/>
+                        <h:commandLink value="Hacer venta" action="hacer_ventaAlimento" actionListener="#{control_alimento.crear_()}"  rendered="${control_acceso.activo2}"/>
+                        <h:outputText class="textoSimple" value="Venta Mayorista Alimentos" rendered="${control_acceso.activo3}"/>
+                        <h:commandLink value="Hacer venta" action="hacer_ventaAlimentoM" actionListener="#{control_alimento.crear_()}"  rendered="${control_acceso.activo3}"/>
+                        <h:outputText class="textoSimple" value="mover abarrotes" rendered="${control_acceso.activo1}"/>
+                        <h:commandLink value="Mover Abarrotes" action="mover_productos" actionListener="#{control_abarrote.crear_()}" rendered="${control_acceso.activo1}" />
+                        <h:outputText class="textoSimple" value="mover alimentos" rendered="${control_acceso.activo1}"/>
+                        <h:commandLink value="Mover Alimentos" action="mover_productos_1" actionListener="#{control_alimento.crear_()}" rendered="${control_acceso.activo1}" />
+                        <h:outputText class="textoSimple" value="Mover usuarios" rendered="${control_acceso.activo1}"/>
+                        <h:commandLink value="Mover usuarios" action="mover_usuarios" actionListener="#{control_usuario.crear_()}" rendered="${control_acceso.activo1}"/>
+                        <h:outputText class="textoSimple" value="Regresar"/>
+                        <h:commandLink value="Regresar" action="acceso"/>
+                    </p:panelGrid>
+                </h:form>
+                </center>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
